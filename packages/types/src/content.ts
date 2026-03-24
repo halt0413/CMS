@@ -1,13 +1,9 @@
-export type CmsPage = {
-  slug: string;
-  title: string;
-  body: string;
-  status: "draft" | "published";
+import type { CmsPageInput } from "./cms";
+
+export type PublicContent = Pick<CmsPageInput, "slug" | "title" | "body">;
+
+export type PublishedContent = PublicContent & {
+  status: "published";
 };
 
-export type CmsIssueInput = {
-  title: string;
-  slug: string;
-  body: string;
-  status: "draft" | "published";
-};
+export type CmsPage = CmsPageInput;

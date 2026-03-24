@@ -1,17 +1,12 @@
 import { createGitHubClient } from "../client/createGitHubClient";
-import type { IssueInput, RepoRef } from "../types/github";
-
-type CreateIssueParams = RepoRef & {
-  token: string;
-  input: IssueInput;
-};
+import type { GitHubIssueCreateParams } from "@repo/types";
 
 export async function createIssue({
   owner,
   repo,
   token,
   input
-}: CreateIssueParams) {
+}: GitHubIssueCreateParams) {
   const octokit = createGitHubClient(token);
 
   const response = await octokit.rest.issues.create({

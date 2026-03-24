@@ -1,10 +1,1 @@
-export type RepoRef = {
-  owner: string;
-  repo: string;
-};
-
-export type IssueInput = {
-  title: string;
-  body: string;
-  labels?: string[];
-};
+export type { GitHubIssueInput as IssueInput, GitHubRepoRef as RepoRef } from "@repo/types";
