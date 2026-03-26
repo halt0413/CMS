@@ -3,10 +3,14 @@
   "private": true,
   "packageManager": "pnpm@10.16.1",
   "scripts": {
-    "dev:frontend": "pnpm --filter frontend dev",
-    "dev:backend": "pnpm --filter backend dev",
+    "dev:cms": "pnpm --filter cms dev",
+    "dev:api": "pnpm --filter api dev",
+    "start:api": "pnpm --filter api start",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.57.2"
   }
 }

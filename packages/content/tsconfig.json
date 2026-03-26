@@ -2,8 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "paths": {
+      "@repo/types": ["packages/types/dist/index.d.ts"],
+      "@repo/utils": ["packages/utils/dist/index.d.ts"]
+    }
   },
   "include": ["src"]
 }
