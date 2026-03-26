@@ -1,15 +1,16 @@
 {
-  "name": "frontend",
+  "name": "cms",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- next dev",
+    "build": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- next build",
+    "start": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- next start",
     "lint": "eslint",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@repo/types": "workspace:*",
     "next": "16.2.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"

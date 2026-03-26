@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- tsx watch cmd/main.ts",
+    "build": "pnpm --filter @repo/types build && pnpm --filter @repo/utils build && pnpm --filter @repo/content build && pnpm --filter @repo/github build && tsc -p tsconfig.json",
+    "start": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- node dist/cmd/main.js",
+    "lint": "echo \"No lint configured\"",
+    "typecheck": "pnpm --filter @repo/types build && pnpm --filter @repo/utils build && pnpm --filter @repo/content build && pnpm --filter @repo/github build && tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@repo/content": "workspace:*",
+    "@repo/github": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@hono/node-server": "^1.19.6",
+    "hono": "^4.10.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.20.6",
+    "typescript": "^5"
+  }
+}

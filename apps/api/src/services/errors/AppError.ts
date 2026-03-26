@@ -1,0 +1,27 @@
+export class AppError extends Error {
+  constructor(
+    message: string,
+    public readonly statusCode: number
+  ) {
+    super(message);
+    this.name = new.target.name;
+  }
+}
+
+export class ConfigurationError extends AppError {
+  constructor(message: string) {
+    super(message, 500);
+  }
+}
+
+export class NotFoundError extends AppError {
+  constructor(message: string) {
+    super(message, 404);
+  }
+}
+
+export class UnauthorizedError extends AppError {
+  constructor(message = "Unauthorized") {
+    super(message, 401);
+  }
+}
