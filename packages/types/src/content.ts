@@ -1,9 +1,10 @@
-import type { CmsPageInput } from "./cms";
+import type { CmsPageInput, CmsPublishedPage } from "./cms";
 
 export type PublicContent = Pick<CmsPageInput, "slug" | "title" | "body">;
 
-export type PublishedContent = PublicContent & {
-  status: "published";
+export type ContentPreview = PublicContent & {
+  mode: "preview";
 };
 
-export type CmsPage = CmsPageInput;
+export type PublishedContent = PublicContent &
+  Pick<CmsPublishedPage, "publishedAt">;
