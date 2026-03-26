@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- tsx watch cmd/main.ts",
+    "dev": "bash ../../scripts/run-with-env.sh env TSX_TSCONFIG_PATH=tsconfig.dev.json pnpm exec tsx watch cmd/main.ts",
     "build": "pnpm --filter @repo/types build && pnpm --filter @repo/utils build && pnpm --filter @repo/content build && pnpm --filter @repo/github build && tsc -p tsconfig.json",
-    "start": "pnpm exec dotenvx run -f ../../.env.enc -fk ../../.env.keys -- node dist/cmd/main.js",
+    "start": "bash ../../scripts/run-with-env.sh node dist/cmd/main.js",
     "lint": "echo \"No lint configured\"",
     "typecheck": "pnpm --filter @repo/types build && pnpm --filter @repo/utils build && pnpm --filter @repo/content build && pnpm --filter @repo/github build && tsc -p tsconfig.json --noEmit"
   },
