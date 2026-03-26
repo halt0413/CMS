@@ -1,5 +1,5 @@
 {
-  "name": "@repo/content",
+  "name": "@repo/utils",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,8 +10,6 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@repo/types": "workspace:*",
-    "@repo/utils": "workspace:*",
-    "zod": "^3.24.1"
+    "@repo/types": "workspace:*"
   }
 }

@@ -3,10 +3,28 @@ export type GitHubRepoRef = {
   repo: string;
 };
 
+export type GitHubIssueLabel = string;
+
 export type GitHubIssueInput = {
   title: string;
   body: string;
-  labels?: string[];
+  labels?: GitHubIssueLabel[];
+};
+
+export type GitHubIssue = {
+  id: number;
+  number: number;
+  title: string;
+  body: string | null;
+  url: string;
+  state: "open" | "closed";
+  labels: GitHubIssueLabel[];
+};
+
+export type GitHubIssueLink = Pick<GitHubIssue, "id" | "number" | "url">;
+
+export type GitHubIssueCreateResult = GitHubIssueLink & {
+  title: string;
 };
 
 export type GitHubIssueCreateParams = GitHubRepoRef & {
