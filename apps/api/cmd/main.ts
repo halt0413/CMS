@@ -1,3 +1,6 @@
+import { loadEnvFile } from "node:process";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { serve } from "@hono/node-server";
 import { createPage as executeCreatePage } from "../src/services/page/createPage";
 import { getPage } from "../src/services/page/getPage";
@@ -8,6 +11,9 @@ import { syncPageToGitHub as executeSyncPageToGitHub } from "../src/services/pag
 import { createApp } from "../src/handlers/http/createApp";
 import { InMemoryPageRepository } from "../src/repositories/InMemoryPageRepository";
 import { OctokitGitHubIssueGateway } from "../src/repositories/OctokitGitHubIssueGateway";
+
+const rootEnvPath = resolve(dirname(fileURLToPath(import.meta.url)), "../../../.env");
+loadEnvFile(rootEnvPath);
 
 const config = {
   adminApiToken: process.env.ADMIN_API_TOKEN ?? "dev-admin-token",
