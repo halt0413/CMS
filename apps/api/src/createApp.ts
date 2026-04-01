@@ -91,6 +91,7 @@ export function createApp({
   );
   app.route("/auth", createAuthRouter(authController));
 
+  // 編集系とpreviewは管理トークンまたはログインセッションを要求する
   app.use("/pages", auth);
   app.use("/pages/*", auth);
   app.use("/preview/*", auth);
@@ -99,6 +100,7 @@ export function createApp({
   app.route("/preview", createPreviewRouter(previewController));
 
   if (githubWebhookSecret) {
+    // secret未設定の環境ではwebhook endpoint自体を公開しない
     app.route(
       "/webhook",
       createWebhookRouter(

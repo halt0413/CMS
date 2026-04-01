@@ -26,6 +26,7 @@ export function createApiDependencies(
   env: ApiEnv,
   { createId, getNow }: RuntimeDependencies
 ): CreateAppDependencies {
+  // Infrastructureの実装をここで束ねて、HTTP層へはusecaseだけを渡す
   const pageRepository = new InMemoryPageRepository();
   const sessionRepository = new InMemorySessionRepository();
   const oAuthStateRepository = new InMemoryOAuthStateRepository();

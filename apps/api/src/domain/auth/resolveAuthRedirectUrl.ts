@@ -20,6 +20,7 @@ export function resolveAuthRedirectUrl(
 
   const requestedUrl = new URL(redirectTo);
 
+  // OAuth後のopen redirectを防ぐため、CMSと同一originに限定する
   if (requestedUrl.origin !== baseUrl.origin) {
     return baseUrl.toString();
   }

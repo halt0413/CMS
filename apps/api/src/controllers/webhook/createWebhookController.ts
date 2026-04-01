@@ -50,6 +50,7 @@ function isValidWebhookSignature(
   signature: string,
   secret: string
 ): boolean {
+  // GitHubと同じrawbodyからHMACを作り、署名を定数時間比較する
   const expectedSignature = `sha256=${createHmac("sha256", secret)
     .update(rawBody)
     .digest("hex")}`;
