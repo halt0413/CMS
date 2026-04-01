@@ -18,7 +18,7 @@ export function createAuthMiddleware({
     const authorization = c.req.header("authorization");
     const sessionId = getCookie(c, sessionCookieName);
 
-    // 管理APIはBearer tokenと CMSログインsessionの両方を許可する
+    // 管理APIはBearer tokenとCMSログインsessionの両方を許可する
     if (authorization === `Bearer ${adminApiToken}`) {
       await next();
       return;
