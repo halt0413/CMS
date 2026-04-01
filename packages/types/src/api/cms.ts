@@ -1,0 +1,30 @@
+import type { CmsPage, CmsPageInput } from "../domain/cms";
+import type { PublicContent } from "../domain/content";
+import type { GitHubIssueCreateResult } from "../domain/github";
+import type { ApiItemResponse, ApiListResponse } from "./common";
+
+export type CmsPageCreateRequest = CmsPageInput;
+
+export type CmsPageCreateResponse = {
+  created: CmsPage;
+};
+
+export type CmsPageListResponse = ApiListResponse<CmsPage>;
+
+export type PreviewResponse = {
+  slug: string;
+  status: "preview";
+};
+
+export type CmsPreviewResponse = PreviewResponse & {
+  content: PublicContent;
+};
+
+export type GitHubSyncResponse = {
+  synced: {
+    pageId: CmsPage["id"];
+    issue: GitHubIssueCreateResult;
+  };
+};
+
+export type CmsPageItemResponse = ApiItemResponse<CmsPage>;

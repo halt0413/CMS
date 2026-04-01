@@ -1,14 +1,33 @@
+import { getCookie } from "hono/cookie";
 import type { MiddlewareHandler } from "hono";
-import { UnauthorizedError } from "../services/errors/AppError";
+import { UnauthorizedError } from "../lib/errors/AppError";
+import type { SessionRepository } from "../services/ports/index";
 
-export function createAuthMiddleware(token: string): MiddlewareHandler {
+type CreateAuthMiddlewareConfig = {
+  adminApiToken: string;
+  sessionCookieName: string;
+  sessionRepository: SessionRepository;
+};
+
+export function createAuthMiddleware({
+  adminApiToken,
+  sessionCookieName,
+  sessionRepository
+}: CreateAuthMiddlewareConfig): MiddlewareHandler {
   return async (c, next) => {
     const authorization = c.req.header("authorization");
+    const sessionId = getCookie(c, sessionCookieName);
 
-    if (authorization !== `Bearer ${token}`) {
-      throw new UnauthorizedError();
+    if (authorization === `Bearer ${adminApiToken}`) {
+      await next();
+      return;
     }
 
-    await next();
+    if (sessionId && sessionRepository.get(sessionId)) {
+      await next();
+      return;
+    }
+
+    throw new UnauthorizedError();
   };
 }

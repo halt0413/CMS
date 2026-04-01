@@ -1,7 +1,10 @@
-import type { GitHubIssueGateway } from "../../repositories/GitHubIssueGateway";
-import type { PageRepository } from "../../repositories/PageRepository";
-import { NotFoundError } from "../errors/AppError";
-import type { SyncPageToGitHubResult } from "../../models/SyncPageToGitHubResult";
+import { NotFoundError } from "../../lib/errors/AppError";
+import type { GitHubIssueGateway, PageRepository } from "../ports";
+
+export type SyncPageToGitHubResult = {
+  issue: Awaited<ReturnType<GitHubIssueGateway["createFromPage"]>>;
+  pageId: string;
+};
 
 type SyncPageToGitHubDependencies = {
   gitHubIssueGateway: GitHubIssueGateway;

@@ -1,6 +1,6 @@
 import type { CmsPage, CmsPageId } from "@repo/types";
-import type { PageRepository } from "../../repositories/PageRepository";
-import { NotFoundError } from "../errors/AppError";
+import { NotFoundError } from "../../lib/errors/AppError";
+import type { PageRepository } from "../ports";
 
 export function getPage(pageRepository: PageRepository, id: CmsPageId): CmsPage {
   const page = pageRepository.findById(id);

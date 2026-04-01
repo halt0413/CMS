@@ -1,6 +1,8 @@
-import type { PageRepository } from "../../repositories/PageRepository";
-import { NotFoundError } from "../errors/AppError";
-import type { PagePreview } from "../../models/PagePreview";
+import type { CmsPage } from "@repo/types";
+import { NotFoundError } from "../../lib/errors/AppError";
+import type { PageRepository } from "../ports";
+
+export type PagePreview = CmsPage;
 
 export function getPagePreview(
   pageRepository: PageRepository,

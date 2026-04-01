@@ -1,6 +1,6 @@
-import type { PageRepository } from "../../repositories/PageRepository";
-import { NotFoundError } from "../errors/AppError";
-import type { PagePreview } from "../../models/PagePreview";
+import { NotFoundError } from "../../lib/errors/AppError";
+import type { PageRepository } from "../ports";
+import type { PagePreview } from "./getPagePreview";
 
 export function getPagePreviewById(
   pageRepository: PageRepository,

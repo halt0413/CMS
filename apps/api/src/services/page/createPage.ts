@@ -1,6 +1,6 @@
 import type { CmsPage, CmsPageInput } from "@repo/types";
-import { buildPage } from "../../models/buildPage";
-import type { PageRepository } from "../../repositories/PageRepository";
+import { buildPage } from "../../domain/page/buildPage";
+import type { PageRepository } from "../ports";
 
 type CreatePageDependencies = {
   createId: () => string;

@@ -7,20 +7,24 @@
     "dev": "env TSX_TSCONFIG_PATH=tsconfig.dev.json pnpm exec tsx watch cmd/main.ts",
     "build": "pnpm --filter @repo/types build && pnpm --filter @repo/utils build && pnpm --filter @repo/content build && pnpm --filter @repo/github build && tsc -p tsconfig.json",
     "start": "node dist/cmd/main.js",
-    "lint": "echo \"No lint configured\"",
+    "lint": "eslint .",
     "typecheck": "pnpm --filter @repo/types build && pnpm --filter @repo/utils build && pnpm --filter @repo/content build && pnpm --filter @repo/github build && tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@hono/node-server": "^1.19.6",
     "@repo/content": "workspace:*",
     "@repo/github": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@hono/node-server": "^1.19.6",
     "hono": "^4.10.6"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "eslint": "^9.39.4",
     "tsx": "^4.20.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.58.0"
   }
 }
