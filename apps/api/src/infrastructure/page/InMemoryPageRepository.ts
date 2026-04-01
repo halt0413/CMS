@@ -22,6 +22,10 @@ export class InMemoryPageRepository implements PageRepository {
     return this.pages.get(id);
   }
 
+  delete(id: CmsPageId): void {
+    this.pages.delete(id);
+  }
+
   findBySlug(slug: string): CmsPage | undefined {
     const normalizedSlug = normalizeSlug(slug);
 

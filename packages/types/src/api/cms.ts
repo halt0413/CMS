@@ -1,4 +1,4 @@
-import type { CmsPage, CmsPageInput } from "../domain/cms";
+import type { CmsPage, CmsPageInput, CmsPagePatch } from "../domain/cms";
 import type { PublicContent } from "../domain/content";
 import type { GitHubIssueCreateResult } from "../domain/github";
 import type { ApiItemResponse, ApiListResponse } from "./common";
@@ -7,6 +7,17 @@ export type CmsPageCreateRequest = CmsPageInput;
 
 export type CmsPageCreateResponse = {
   created: CmsPage;
+};
+
+export type CmsPageUpdateRequest = CmsPagePatch;
+
+export type CmsPageUpdateResponse = {
+  updated: CmsPage;
+};
+
+export type CmsPageDeleteResponse = {
+  deleted: true;
+  id: CmsPage["id"];
 };
 
 export type CmsPageListResponse = ApiListResponse<CmsPage>;

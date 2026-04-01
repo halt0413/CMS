@@ -11,6 +11,12 @@ export type GitHubIssueInput = {
   labels?: GitHubIssueLabel[];
 };
 
+export type GitHubIssueUpdateInput = Partial<
+  Pick<GitHubIssueInput, "title" | "body">
+> & {
+  state?: "open" | "closed";
+};
+
 export type GitHubIssue = {
   id: number;
   number: number;
@@ -30,6 +36,27 @@ export type GitHubIssueCreateResult = GitHubIssueLink & {
 export type GitHubIssueCreateParams = GitHubRepoRef & {
   token: string;
   input: GitHubIssueInput;
+};
+
+export type GitHubIssueGetParams = GitHubRepoRef & {
+  token: string;
+  issueNumber: number;
+};
+
+export type GitHubIssueListParams = GitHubRepoRef & {
+  token: string;
+};
+
+export type GitHubIssueUpdateParams = GitHubRepoRef & {
+  token: string;
+  issueNumber: number;
+  input: GitHubIssueUpdateInput;
+};
+
+export type GitHubIssueLabelsUpdateParams = GitHubRepoRef & {
+  token: string;
+  issueNumber: number;
+  labels: GitHubIssueLabel[];
 };
 
 export type RepoRef = GitHubRepoRef;

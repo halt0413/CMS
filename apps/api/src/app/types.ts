@@ -1,9 +1,8 @@
 import type { SessionRepository } from "../services/ports";
 import type { AuthControllerHandlers } from "../controllers/auth/types";
-import type {
-  PagesControllerHandlers,
-  PreviewControllerHandlers
-} from "../controllers/page/types";
+import type { ContentsControllerHandlers } from "../controllers/content/types";
+import type { GitHubControllerHandlers } from "../controllers/github/types";
+import type { PreviewControllerHandlers } from "../controllers/page/types";
 import type { MeControllerHandler } from "../controllers/system/types";
 
 export type AppHttpConfig = {
@@ -20,7 +19,8 @@ export type AppHttpInfrastructure = {
 
 export type CreateAppDependencies = AppHttpConfig &
   AuthControllerHandlers &
-  PagesControllerHandlers &
+  ContentsControllerHandlers &
+  GitHubControllerHandlers &
   PreviewControllerHandlers &
   MeControllerHandler &
   AppHttpInfrastructure;

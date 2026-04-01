@@ -1,15 +1,34 @@
-export type ApiIssue = {
-  id: number;
-  title: string;
-  body: string;
+import type {
+  GitHubIssue,
+  GitHubIssueInput,
+  GitHubIssueLabel
+} from "../domain/github";
+import type { ApiItemResponse, ApiListResponse } from "./common";
+
+export type IssueCreateRequest = GitHubIssueInput;
+
+export type IssueUpdateRequest = Partial<
+  Pick<GitHubIssueInput, "title" | "body">
+> & {
+  state?: GitHubIssue["state"];
 };
 
-export type IssueCreateRequest = Partial<Pick<ApiIssue, "title" | "body">>;
-
-export type IssuesListResponse = {
-  items: ApiIssue[];
+export type IssueLabelsUpdateRequest = {
+  labels: GitHubIssueLabel[];
 };
+
+export type IssuesListResponse = ApiListResponse<GitHubIssue>;
+
+export type IssueItemResponse = ApiItemResponse<GitHubIssue>;
 
 export type IssueCreateResponse = {
-  created: ApiIssue;
+  created: GitHubIssue;
+};
+
+export type IssueUpdateResponse = {
+  updated: GitHubIssue;
+};
+
+export type IssueLabelsResponse = {
+  updated: GitHubIssue;
 };

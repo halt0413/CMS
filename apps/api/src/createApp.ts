@@ -2,7 +2,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
 import { createAuthController } from "./controllers/auth/createAuthController";
-import { createPagesController } from "./controllers/page/createPagesController";
+import { createContentsController } from "./controllers/content/createContentsController";
+import { createGitHubController } from "./controllers/github/createGitHubController";
 import { createPreviewController } from "./controllers/page/createPreviewController";
 import { createSystemController } from "./controllers/system/createSystemController";
 import type { CreateAppDependencies } from "./app/types";
@@ -10,27 +11,36 @@ import { createWebhookController } from "./controllers/webhook/createWebhookCont
 import { AppError } from "./lib/errors/AppError";
 import { createAuthMiddleware } from "./middleware/auth";
 import { createAuthRouter } from "./routes/auth/createAuthRouter";
-import { createPagesRouter } from "./routes/page/createPagesRouter";
+import { createContentsRouter } from "./routes/content/createContentsRouter";
+import { createGitHubRouter } from "./routes/internal/github/createGitHubRouter";
 import { createPreviewRouter } from "./routes/page/createPreviewRouter";
 import { createSystemRouter } from "./routes/system/createSystemRouter";
 import { createWebhookRouter } from "./routes/webhook/createWebhookRouter";
+import { createOpenApiDocument } from "./docs/openapi";
+import { renderSwaggerUiHtml } from "./docs/swaggerUi";
 
 export function createApp({
   adminApiToken,
+  addIssueLabels,
   completeGitHubLogin,
   cookieSecure,
-  createPage,
+  createContent,
+  createIssue,
+  deleteContent,
+  getContent,
+  getContentPreviewById,
   getCurrentUser,
-  getPage,
-  getPagePreviewById,
+  getIssue,
   getPagePreviewBySlug,
   githubWebhookSecret,
-  listPages,
+  listContents,
+  listIssues,
   logout,
   sessionCookieName,
   sessionRepository,
   startGitHubLogin,
-  syncPageToGitHub,
+  updateContent,
+  updateIssue,
   webOrigin
 }: CreateAppDependencies) {
   const app = new Hono();
@@ -46,12 +56,20 @@ export function createApp({
     sessionCookieName,
     startGitHubLogin
   });
-  const pagesController = createPagesController({
-    createPage,
-    getPage,
-    getPagePreviewById,
-    listPages,
-    syncPageToGitHub
+  const contentsController = createContentsController({
+    createContent,
+    deleteContent,
+    getContent,
+    getContentPreviewById,
+    listContents,
+    updateContent
+  });
+  const gitHubController = createGitHubController({
+    addIssueLabels,
+    createIssue,
+    getIssue,
+    listIssues,
+    updateIssue
   });
   const previewController = createPreviewController({
     getPagePreviewBySlug
@@ -89,20 +107,36 @@ export function createApp({
       controller: systemController
     })
   );
+  app.get("/openapi.json", (c) =>
+    c.json(
+      createOpenApiDocument({
+        includeGitHubWebhook: Boolean(githubWebhookSecret),
+        sessionCookieName
+      })
+    )
+  );
+  app.get("/docs", (c) => c.html(renderSwaggerUiHtml("/openapi.json")));
   app.route("/auth", createAuthRouter(authController));
 
-  // 編集系とpreviewは管理トークンまたはログインセッションを要求する
-  app.use("/pages", auth);
-  app.use("/pages/*", auth);
+  // previewと内部GitHub操作は管理トークンまたはログインセッションを要求する
   app.use("/preview/*", auth);
+  app.use("/internal/github", auth);
+  app.use("/internal/github/*", auth);
 
-  app.route("/pages", createPagesRouter(pagesController));
+  app.route(
+    "/contents",
+    createContentsRouter({
+      auth,
+      controller: contentsController
+    })
+  );
+  app.route("/internal/github", createGitHubRouter(gitHubController));
   app.route("/preview", createPreviewRouter(previewController));
 
   if (githubWebhookSecret) {
     // secret未設定の環境ではwebhook endpoint自体を公開しない
     app.route(
-      "/webhook",
+      "/webhooks/github",
       createWebhookRouter(
         createWebhookController({
           secret: githubWebhookSecret

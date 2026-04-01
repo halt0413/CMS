@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { CmsPageInput } from "@repo/types";
 
-export const cmsPageSchema: z.ZodType<CmsPageInput> = z.object({
+export const cmsPageSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
   body: z.string().min(1),
@@ -9,3 +9,6 @@ export const cmsPageSchema: z.ZodType<CmsPageInput> = z.object({
 });
 
 export type CmsPageSchema = z.infer<typeof cmsPageSchema>;
+
+const _cmsPageInputCheck: CmsPageInput = {} as CmsPageSchema;
+void _cmsPageInputCheck;

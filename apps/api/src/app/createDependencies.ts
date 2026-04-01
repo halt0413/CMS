@@ -10,12 +10,18 @@ import { completeGitHubLogin } from "../services/auth/completeGitHubLogin";
 import { getCurrentUser } from "../services/auth/getCurrentUser";
 import { logout } from "../services/auth/logout";
 import { startGitHubLogin } from "../services/auth/startGitHubLogin";
+import { createIssue } from "../services/github/createIssue";
+import { getIssue } from "../services/github/getIssue";
+import { listIssues } from "../services/github/listIssues";
+import { updateIssue } from "../services/github/updateIssue";
+import { updateIssueLabels } from "../services/github/updateIssueLabels";
 import { createPage } from "../services/page/createPage";
+import { deletePage } from "../services/page/deletePage";
 import { getPage } from "../services/page/getPage";
 import { getPagePreview } from "../services/page/getPagePreview";
 import { getPagePreviewById } from "../services/page/getPagePreviewById";
 import { listPages } from "../services/page/listPages";
-import { syncPageToGitHub } from "../services/page/syncPageToGitHub";
+import { updatePage } from "../services/page/updatePage";
 
 type RuntimeDependencies = {
   createId: () => string;
@@ -45,19 +51,23 @@ export function createApiDependencies(
         sessionRepository
       }),
     cookieSecure: env.session.cookieSecure,
-    createPage: (input) =>
+    createContent: (input) =>
       createPage(input, {
         pageRepository,
         createId,
         getNow
       }),
+    createIssue: (input) => createIssue(gitHubIssueGateway, input),
+    deleteContent: (id: string) => deletePage(pageRepository, id),
     getCurrentUser: (sessionId: string | undefined) =>
       getCurrentUser(sessionId, sessionRepository),
-    getPage: (id: string) => getPage(pageRepository, id),
-    getPagePreviewById: (id: string) => getPagePreviewById(pageRepository, id),
+    getContent: (id: string) => getPage(pageRepository, id),
+    getContentPreviewById: (id: string) => getPagePreviewById(pageRepository, id),
+    getIssue: (issueNumber: number) => getIssue(gitHubIssueGateway, issueNumber),
     getPagePreviewBySlug: (slug: string) => getPagePreview(pageRepository, slug),
     githubWebhookSecret: env.githubWebhookSecret,
-    listPages: () => listPages(pageRepository),
+    listContents: () => listPages(pageRepository),
+    listIssues: () => listIssues(gitHubIssueGateway),
     logout: (sessionId: string | undefined) => logout(sessionId, sessionRepository),
     sessionCookieName: env.session.cookieName,
     sessionRepository,
@@ -69,11 +79,15 @@ export function createApiDependencies(
         gitHubOAuthGateway,
         oAuthStateRepository
       }),
-    syncPageToGitHub: (id: string) =>
-      syncPageToGitHub(id, {
-        pageRepository,
-        gitHubIssueGateway
+    addIssueLabels: (issueNumber, labels) =>
+      updateIssueLabels(gitHubIssueGateway, issueNumber, labels),
+    updateContent: (id, input) =>
+      updatePage(id, input, {
+        getNow,
+        pageRepository
       }),
+    updateIssue: (issueNumber, input) =>
+      updateIssue(gitHubIssueGateway, issueNumber, input),
     webOrigin: new URL(env.cmsUrl).origin
   };
 }

@@ -1,0 +1,91 @@
+import { cmsPageSchema, toPageContent } from "@repo/content";
+import type {
+  CmsPageCreateResponse,
+  CmsPageDeleteResponse,
+  CmsPageItemResponse,
+  CmsPageListResponse,
+  CmsPreviewResponse,
+  CmsPageUpdateResponse
+} from "@repo/types";
+import type { Context } from "hono";
+import { BadRequestError } from "../../lib/errors/AppError";
+import type { ContentsControllerHandlers } from "./types";
+
+const cmsPagePatchSchema = cmsPageSchema.partial();
+
+export function createContentsController({
+  createContent,
+  deleteContent,
+  getContent,
+  getContentPreviewById,
+  listContents,
+  updateContent
+}: ContentsControllerHandlers) {
+  return {
+    list(c: Context) {
+      const items = listContents();
+      const response: CmsPageListResponse = {
+        items,
+        total: items.length
+      };
+
+      return c.json(response);
+    },
+    get(c: Context) {
+      const item = getContent(requireRouteParam(c, "id"));
+      const response: CmsPageItemResponse = {
+        item
+      };
+
+      return c.json(response);
+    },
+    async create(c: Context) {
+      const payload = await c.req.json();
+      const created = createContent(cmsPageSchema.parse(payload));
+      const response: CmsPageCreateResponse = {
+        created
+      };
+
+      return c.json(response, 201);
+    },
+    async update(c: Context) {
+      const payload = await c.req.json();
+      const updated = updateContent(
+        requireRouteParam(c, "id"),
+        cmsPagePatchSchema.parse(payload)
+      );
+      const response: CmsPageUpdateResponse = {
+        updated
+      };
+
+      return c.json(response);
+    },
+    remove(c: Context) {
+      const response: CmsPageDeleteResponse = deleteContent(
+        requireRouteParam(c, "id")
+      );
+
+      return c.json(response);
+    },
+    preview(c: Context) {
+      const page = getContentPreviewById(requireRouteParam(c, "id"));
+      const response: CmsPreviewResponse = {
+        slug: page.slug,
+        status: "preview",
+        content: toPageContent(page)
+      };
+
+      return c.json(response);
+    }
+  };
+}
+
+function requireRouteParam(c: Context, name: string): string {
+  const value = c.req.param(name);
+
+  if (!value) {
+    throw new BadRequestError(`${name} is required`);
+  }
+
+  return value;
+}
