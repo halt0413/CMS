@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Header } from "../components/layouts/Header/Header";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,17 +16,7 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <div className="shell">
-          <header className="shell__header">
-            <div>
-              <p className="eyebrow">Content Pipeline</p>
-              <h1>CMS Console</h1>
-            </div>
-            <nav className="shell__nav">
-              <Link href="/dashboard">Dashboard</Link>
-              <Link href="/editor">Editor</Link>
-              <Link href="/login">Config</Link>
-            </nav>
-          </header>
+          <Header />
           {children}
         </div>
       </body>
