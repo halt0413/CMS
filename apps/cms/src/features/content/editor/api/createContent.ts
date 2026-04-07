@@ -3,7 +3,7 @@ import type {
   CmsPageCreateRequest,
   CmsPageCreateResponse
 } from "@repo/types";
-import { cmsFetch } from "../../shared/api/client";
+import { cmsFetch } from "../../../../api/cms/client";
 
 export async function createContent(
   payload: CmsPageCreateRequest

@@ -1,5 +1,5 @@
 import type { CmsPageInput } from "@repo/types";
-import { type ContentType } from "../../../shared/mocks/mockContents";
+import { type ContentType } from "../../../../../mocks/content/mockContents";
 import styles from "./ContentForm.module.css";
 
 type ContentFormValue = CmsPageInput & {

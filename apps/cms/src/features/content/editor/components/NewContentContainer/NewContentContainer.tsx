@@ -1,4 +1,4 @@
-import { PageHeader } from "../../../shared/components/PageHeader/PageHeader";
+import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
 import { ContentForm } from "../ContentForm/ContentForm";
 import styles from "./NewContentContainer.module.css";
 

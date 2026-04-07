@@ -1,5 +1,5 @@
 import type { CmsPageDeleteResponse } from "@repo/types";
-import { cmsFetch } from "../../shared/api/client";
+import { cmsFetch } from "../../../../api/cms/client";
 
 export function deleteContent(id: string): Promise<CmsPageDeleteResponse> {
   return cmsFetch<CmsPageDeleteResponse>(`/contents/${id}`, {
