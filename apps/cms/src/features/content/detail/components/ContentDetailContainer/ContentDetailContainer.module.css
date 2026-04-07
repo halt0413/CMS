@@ -1,0 +1,99 @@
+.page {
+  display: grid;
+  gap: 20px;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.detailCard {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  align-content: start;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e6ebf4;
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(33, 50, 92, 0.08);
+}
+
+.ghostButton {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #4f6490;
+  font-weight: 700;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.infoRow:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.infoLabel {
+  color: #7b839d;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.typeBadge {
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: #eef6ff;
+  color: #0e62d6;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #3d4862;
+  font-weight: 700;
+}
+
+.statusDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #11adb5;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #6d6b98;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #21304f;
+  font-size: 1.2rem;
+}
+
+.longText {
+  margin: 0;
+  color: #45526d;
+  line-height: 1.9;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 1100px) {
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+}

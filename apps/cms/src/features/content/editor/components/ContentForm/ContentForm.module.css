@@ -1,0 +1,156 @@
+.formLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+  gap: 20px;
+}
+
+.formCard,
+.sideCard {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e6ebf4;
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(33, 50, 92, 0.08);
+}
+
+.formCard {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.sideCard {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  align-content: start;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #21304f;
+  font-size: 1.2rem;
+}
+
+.formDescription {
+  margin: 0;
+  color: #63708a;
+  line-height: 1.7;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 10px;
+}
+
+.fieldLabel {
+  color: #50607c;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid #dbe3ee;
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: #fbfdff;
+  color: #21304f;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 220px;
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.formActionsLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.formActionsRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.secondaryButton {
+  border: 1px solid #d9e3ef;
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: #ffffff;
+  color: #30496a;
+  font-weight: 700;
+}
+
+.deleteButton {
+  border-color: #f0c7c7;
+  background: #fff4f4;
+  color: #c03535;
+}
+
+.primaryButton {
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: #0e62d6;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(14, 98, 214, 0.18);
+}
+
+.sideSection {
+  display: grid;
+  gap: 10px;
+}
+
+.endpoint {
+  margin: 0;
+  color: #46536d;
+  line-height: 1.7;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #6d6b98;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.metaList {
+  margin: 0;
+  padding-left: 18px;
+  color: #55637e;
+  line-height: 1.8;
+}
+
+@media (max-width: 1100px) {
+  .formLayout,
+  .fieldGrid {
+    grid-template-columns: 1fr;
+  }
+}

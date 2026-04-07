@@ -1,0 +1,19 @@
+.page {
+  display: grid;
+  gap: 20px;
+}
+
+.detailCard {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  align-content: start;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e6ebf4;
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(33, 50, 92, 0.08);
+}
+
+.body {
+  color: var(--muted);
+}
