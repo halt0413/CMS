@@ -1,14 +1,7 @@
+import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { type MockContentItem } from "../const/mockContents";
 import styles from "./ContentPage.module.css";
-
-function formatDateTime(value: string): string {
-  return new Intl.DateTimeFormat("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
-  }).format(new Date(value));
-}
 
 type ContentDetailPageProps = {
   content: MockContentItem;
@@ -16,7 +9,7 @@ type ContentDetailPageProps = {
 
 export function ContentDetailPage({ content }: ContentDetailPageProps) {
   const publishedAt =
-    content.status === "published" ? formatDateTime(content.publishedAt) : null;
+    content.status === "published" ? formatDate(content.publishedAt) : null;
 
   return (
     <main className={styles.page}>
@@ -55,11 +48,11 @@ export function ContentDetailPage({ content }: ContentDetailPageProps) {
           </div>
           <div className={styles.infoRow}>
             <span className={styles.infoLabel}>createdAt</span>
-            <span>{formatDateTime(content.createdAt)}</span>
+            <span>{formatDate(content.createdAt)}</span>
           </div>
           <div className={styles.infoRow}>
             <span className={styles.infoLabel}>updatedAt</span>
-            <span>{formatDateTime(content.updatedAt)}</span>
+            <span>{formatDate(content.updatedAt)}</span>
           </div>
           {publishedAt ? (
             <div className={styles.infoRow}>

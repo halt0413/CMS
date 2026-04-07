@@ -1,14 +1,7 @@
+import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { mockContents } from "../const/mockContents";
 import styles from "./ContentPage.module.css";
-
-function formatDate(value: string): string {
-  return new Intl.DateTimeFormat("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
-  }).format(new Date(value));
-}
 
 export function ContentsPage() {
   const contentTypes = Array.from(
