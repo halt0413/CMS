@@ -1,5 +1,5 @@
-import { PageHeader } from "../../../shared/components/PageHeader/PageHeader";
-import { getMockContentById } from "../../../shared/mocks/mockContents";
+import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
+import { getMockContentById } from "../../../../../mocks/content/mockContents";
 import { ContentForm } from "../ContentForm/ContentForm";
 import styles from "./EditContentContainer.module.css";
 

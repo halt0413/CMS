@@ -1,7 +1,7 @@
 import { formatDate } from "@repo/utils";
 import Link from "next/link";
-import { PageHeader } from "../../../shared/components/PageHeader/PageHeader";
-import { mockContents } from "../../../shared/mocks/mockContents";
+import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
+import { mockContents } from "../../../../../mocks/content/mockContents";
 import styles from "./ContentsContainer.module.css";
 
 export function ContentsContainer() {

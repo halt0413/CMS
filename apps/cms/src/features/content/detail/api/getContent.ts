@@ -1,5 +1,5 @@
 import type { CmsPage, CmsPageItemResponse } from "@repo/types";
-import { cmsFetch } from "../../shared/api/client";
+import { cmsFetch } from "../../../../api/cms/client";
 
 export async function getContent(id: string): Promise<CmsPage> {
   const response = await cmsFetch<CmsPageItemResponse>(`/contents/${id}`);

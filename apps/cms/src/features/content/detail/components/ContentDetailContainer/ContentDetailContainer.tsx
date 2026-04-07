@@ -1,8 +1,8 @@
 import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHeader } from "../../../shared/components/PageHeader/PageHeader";
-import { getMockContentById } from "../../../shared/mocks/mockContents";
+import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
+import { getMockContentById } from "../../../../../mocks/content/mockContents";
 import styles from "./ContentDetailContainer.module.css";
 
 type ContentDetailContainerProps = {
