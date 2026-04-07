@@ -1,6 +1,7 @@
 import { getMockContentById } from "../const/mockContents";
 import { ContentForm } from "./ContentForm";
 import styles from "./ContentPage.module.css";
+import { PageHeader } from "./PageHeader";
 
 type EditContentPageProps = {
   id: string;
@@ -11,14 +12,10 @@ export function EditContentPage({ id }: EditContentPageProps) {
 
   return (
     <main className={styles.page}>
-      <section className={styles.pageHeader}>
-        <div className={styles.titleBlock}>
-          <h2 className={styles.pageTitle}>コンテンツ編集</h2>
-          <p className={styles.subtitle}>
-            {content ? `ID: ${content.id}` : "対象コンテンツが見つかりません。"}
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        subtitle={content ? `ID: ${content.id}` : "対象コンテンツが見つかりません。"}
+        title="コンテンツ編集"
+      />
 
       {content ? (
         <>

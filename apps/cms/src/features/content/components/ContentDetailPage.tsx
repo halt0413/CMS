@@ -2,6 +2,7 @@ import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { type MockContentItem } from "../const/mockContents";
 import styles from "./ContentPage.module.css";
+import { PageHeader } from "./PageHeader";
 
 type ContentDetailPageProps = {
   content: MockContentItem;
@@ -13,17 +14,14 @@ export function ContentDetailPage({ content }: ContentDetailPageProps) {
 
   return (
     <main className={styles.page}>
-      <section className={styles.pageHeader}>
-        <div className={styles.titleBlock}>
-          <h2 className={styles.pageTitle}>{content.title}</h2>
-        </div>
-
-        <div className={styles.headerActions}>
+      <PageHeader
+        actions={
           <Link className={styles.ghostButton} href={`/contents/${content.id}/edit`}>
             編集する
           </Link>
-        </div>
-      </section>
+        }
+        title={content.title}
+      />
 
       <section className={styles.detailGrid}>
         <article className={styles.detailCard}>

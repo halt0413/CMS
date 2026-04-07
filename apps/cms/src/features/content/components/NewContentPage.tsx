@@ -1,14 +1,11 @@
 import { ContentForm } from "./ContentForm";
+import { PageHeader } from "./PageHeader";
 import styles from "./ContentPage.module.css";
 
 export function NewContentPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.pageHeader}>
-        <div className={styles.titleBlock}>
-          <h2 className={styles.pageTitle}>コンテンツ新規作成</h2>
-        </div>
-      </section>
+      <PageHeader title="コンテンツ新規作成" />
 
       <ContentForm
         defaultValue={{
