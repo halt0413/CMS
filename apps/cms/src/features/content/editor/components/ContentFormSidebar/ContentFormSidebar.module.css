@@ -1,0 +1,41 @@
+.sideCard {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  align-content: start;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e6ebf4;
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(33, 50, 92, 0.08);
+}
+
+.sideSection {
+  display: grid;
+  gap: 10px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #21304f;
+  font-size: 1.2rem;
+}
+
+.endpoint {
+  margin: 0;
+  color: #46536d;
+  line-height: 1.7;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #6d6b98;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.metaList {
+  margin: 0;
+  padding-left: 18px;
+  color: #55637e;
+  line-height: 1.8;
+}

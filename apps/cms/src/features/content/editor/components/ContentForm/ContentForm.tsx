@@ -1,5 +1,6 @@
 import type { CmsPageInput } from "@repo/types";
 import { type ContentType } from "../../../../../mocks/content/mockContents";
+import { ContentFormSidebar } from "../ContentFormSidebar/ContentFormSidebar";
 import styles from "./ContentForm.module.css";
 
 type ContentFormValue = CmsPageInput & {
@@ -86,23 +87,7 @@ export function ContentForm({
         </div>
       </form>
 
-      <aside className={styles.sideCard}>
-        <div className={styles.sideSection}>
-          <h3 className={styles.sectionTitle}>フォームの使い方</h3>
-          <p className={styles.endpoint}>{description}</p>
-        </div>
-
-        <div className={styles.sideSection}>
-          <p className={styles.eyebrow}>入力項目</p>
-          <ul className={styles.metaList}>
-            <li>title: string</li>
-            <li>slug: string</li>
-            <li>body: string</li>
-            <li>type: 任意の文字列</li>
-            {showStatus ? <li>status: draft | published</li> : null}
-          </ul>
-        </div>
-      </aside>
+      <ContentFormSidebar description={description} showStatus={showStatus} />
     </section>
   );
 }
