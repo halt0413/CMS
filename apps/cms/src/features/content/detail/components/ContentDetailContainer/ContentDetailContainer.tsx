@@ -1,9 +1,8 @@
-import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ContentStatus } from "../../../../../components/content/ContentStatus/ContentStatus";
 import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
 import { getMockContentById } from "../../../../../mocks/content/mockContents";
+import { ContentMetaCard } from "../ContentMetaCard/ContentMetaCard";
 import styles from "./ContentDetailContainer.module.css";
 
 type ContentDetailContainerProps = {
@@ -17,9 +16,6 @@ export function ContentDetailContainer({ id }: ContentDetailContainerProps) {
     notFound();
   }
 
-  const publishedAt =
-    content.status === "published" ? formatDate(content.publishedAt) : null;
-
   return (
     <main className={styles.page}>
       <PageHeader
@@ -32,38 +28,7 @@ export function ContentDetailContainer({ id }: ContentDetailContainerProps) {
       />
 
       <section className={styles.detailGrid}>
-        <article className={styles.detailCard}>
-          <div className={styles.infoRow}>
-            <span className={styles.infoLabel}>ID</span>
-            <code>{content.id}</code>
-          </div>
-          <div className={styles.infoRow}>
-            <span className={styles.infoLabel}>slug</span>
-            <code>{content.slug}</code>
-          </div>
-          <div className={styles.infoRow}>
-            <span className={styles.infoLabel}>種別</span>
-            <span className={styles.typeBadge}>{content.contentType}</span>
-          </div>
-          <div className={styles.infoRow}>
-            <span className={styles.infoLabel}>status</span>
-            <ContentStatus status={content.status} />
-          </div>
-          <div className={styles.infoRow}>
-            <span className={styles.infoLabel}>createdAt</span>
-            <span>{formatDate(content.createdAt)}</span>
-          </div>
-          <div className={styles.infoRow}>
-            <span className={styles.infoLabel}>updatedAt</span>
-            <span>{formatDate(content.updatedAt)}</span>
-          </div>
-          {publishedAt ? (
-            <div className={styles.infoRow}>
-              <span className={styles.infoLabel}>publishedAt</span>
-              <span>{publishedAt}</span>
-            </div>
-          ) : null}
-        </article>
+        <ContentMetaCard content={content} />
 
         <article className={styles.detailCard}>
           <p className={styles.eyebrow}>本文</p>
