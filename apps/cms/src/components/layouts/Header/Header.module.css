@@ -1,0 +1,116 @@
+.sidebar {
+  display: grid;
+  gap: 22px;
+}
+
+.brand {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brandIdentity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(29, 35, 64, 0.14);
+}
+
+.handle {
+  margin: 0;
+  margin-top: 0;
+  color: #7b809f;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.loginButton,
+.loginMuted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.loginButton {
+  background: #111827;
+  color: #ffffff;
+}
+
+.loginMuted {
+  margin: 0;
+  background: #eef2f7;
+  color: #7b809f;
+}
+
+.nav {
+  display: grid;
+  gap: 18px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  padding: 11px 12px;
+  color: #4c5376;
+  font-weight: 700;
+}
+
+.linkActive {
+  background:
+    linear-gradient(135deg, rgba(14, 98, 214, 0.12), rgba(17, 173, 181, 0.1));
+  color: #0e62d6;
+  box-shadow: inset 0 0 0 1px rgba(14, 98, 214, 0.08);
+}
+
+.linkMark {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: currentColor;
+  opacity: 0.8;
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #8c90aa;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+}
+
+.metaLink {
+  color: #656b8a;
+  font-size: 0.94rem;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    gap: 20px;
+  }
+}
