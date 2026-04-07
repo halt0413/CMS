@@ -1,5 +1,5 @@
-import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
 import { getMockContentById } from "../../../../../mocks/content/mockContents";
+import { ContentEditorPage } from "../ContentEditorPage/ContentEditorPage";
 import { ContentForm } from "../ContentForm/ContentForm";
 import styles from "./EditContentContainer.module.css";
 
@@ -11,12 +11,10 @@ export function EditContentContainer({ id }: EditContentContainerProps) {
   const content = getMockContentById(id);
 
   return (
-    <main className={styles.page}>
-      <PageHeader
-        subtitle={content ? `ID: ${content.id}` : "対象コンテンツが見つかりません。"}
-        title="コンテンツ編集"
-      />
-
+    <ContentEditorPage
+      subtitle={content ? `ID: ${content.id}` : "対象コンテンツが見つかりません。"}
+      title="コンテンツ編集"
+    >
       {content ? (
         <ContentForm
           defaultValue={{
@@ -40,6 +38,6 @@ export function EditContentContainer({ id }: EditContentContainerProps) {
           </p>
         </section>
       )}
-    </main>
+    </ContentEditorPage>
   );
 }
