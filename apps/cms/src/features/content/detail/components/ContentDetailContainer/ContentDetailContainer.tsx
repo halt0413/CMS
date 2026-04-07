@@ -1,6 +1,7 @@
 import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ContentStatus } from "../../../../../components/content/ContentStatus/ContentStatus";
 import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
 import { getMockContentById } from "../../../../../mocks/content/mockContents";
 import styles from "./ContentDetailContainer.module.css";
@@ -46,10 +47,7 @@ export function ContentDetailContainer({ id }: ContentDetailContainerProps) {
           </div>
           <div className={styles.infoRow}>
             <span className={styles.infoLabel}>status</span>
-            <span className={styles.status}>
-              <span className={styles.statusDot} />
-              {content.status}
-            </span>
+            <ContentStatus status={content.status} />
           </div>
           <div className={styles.infoRow}>
             <span className={styles.infoLabel}>createdAt</span>

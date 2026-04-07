@@ -23,21 +23,6 @@
   font-weight: 700;
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #3d4862;
-  font-weight: 700;
-}
-
-.statusDot {
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  background: #11adb5;
-}
-
 .metaDivider {
   color: #b0b8c6;
 }

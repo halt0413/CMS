@@ -1,5 +1,6 @@
 import { formatDate } from "@repo/utils";
 import Link from "next/link";
+import { ContentStatus } from "../../../../../components/content/ContentStatus/ContentStatus";
 import type { MockContentItem } from "../../../../../mocks/content/mockContents";
 import styles from "./ContentCard.module.css";
 
@@ -12,10 +13,7 @@ export function ContentCard({ content }: ContentCardProps) {
     <article className={styles.contentCard}>
       <div className={styles.contentMain}>
         <div className={styles.cardMeta}>
-          <span className={styles.status}>
-            <span className={styles.statusDot} />
-            {content.status === "draft" ? "draft" : "published"}
-          </span>
+          <ContentStatus status={content.status} />
           <span className={styles.metaDivider}>/</span>
           <span className={styles.typeText}>{content.contentType}</span>
         </div>
