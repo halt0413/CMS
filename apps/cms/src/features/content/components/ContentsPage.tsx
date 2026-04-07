@@ -2,6 +2,7 @@ import { formatDate } from "@repo/utils";
 import Link from "next/link";
 import { mockContents } from "../const/mockContents";
 import styles from "./ContentPage.module.css";
+import { PageHeader } from "./PageHeader";
 
 export function ContentsPage() {
   const contentTypes = Array.from(
@@ -10,16 +11,15 @@ export function ContentsPage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.pageHeader}>
-        <div className={styles.titleBlock}>
-          <h2 className={styles.pageTitle}>コンテンツ一覧</h2>
-        </div>
-        <div className={styles.toolbar}>
+      <PageHeader
+        actions={
           <Link className={styles.primaryButton} href="/contents/new">
             新規作成
           </Link>
-        </div>
-      </section>
+        }
+        actionsClassName={styles.toolbar}
+        title="コンテンツ一覧"
+      />
 
       <section className={`${styles.panel} ${styles.listPanel}`}>
         <div className={styles.collectionHeader}>
