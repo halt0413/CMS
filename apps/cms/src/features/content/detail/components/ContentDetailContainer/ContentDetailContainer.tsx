@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
 import { getMockContentById } from "../../../../../mocks/content/mockContents";
+import { ContentBodyCard } from "../ContentBodyCard/ContentBodyCard";
 import { ContentMetaCard } from "../ContentMetaCard/ContentMetaCard";
 import styles from "./ContentDetailContainer.module.css";
 
@@ -29,14 +30,7 @@ export function ContentDetailContainer({ id }: ContentDetailContainerProps) {
 
       <section className={styles.detailGrid}>
         <ContentMetaCard content={content} />
-
-        <article className={styles.detailCard}>
-          <p className={styles.eyebrow}>本文</p>
-          <h3 className={styles.sectionTitle}>content.body</h3>
-          <p className={styles.longText}>
-            {content.body || "本文はまだ入力されていません。"}
-          </p>
-        </article>
+        <ContentBodyCard content={content} />
       </section>
     </main>
   );
