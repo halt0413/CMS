@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
 import { mockContents } from "../../../../../mocks/content/mockContents";
 import { ContentCard } from "../ContentCard/ContentCard";
+import { ContentTypeFilter } from "../ContentTypeFilter/ContentTypeFilter";
 import styles from "./ContentsContainer.module.css";
 
 export function ContentsContainer() {
@@ -28,16 +29,7 @@ export function ContentsContainer() {
           </div>
         </div>
 
-        <div className={styles.typeFilterRow}>
-          <button className={`${styles.typeFilter} ${styles.typeFilterActive}`} type="button">
-            すべて
-          </button>
-          {contentTypes.map((contentType) => (
-            <button className={styles.typeFilter} key={contentType} type="button">
-              {contentType}
-            </button>
-          ))}
-        </div>
+        <ContentTypeFilter activeValue="all" items={contentTypes} />
 
         <div className={styles.contentList}>
           {mockContents.map((content) => (
