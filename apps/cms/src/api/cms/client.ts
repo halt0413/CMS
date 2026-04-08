@@ -1,13 +1,11 @@
-import "server-only";
-
 import { getApiConfig } from "./getApiConfig";
 
 export async function cmsFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const config = getApiConfig();
   const response = await fetch(new URL(path, config.baseUrl), {
     ...init,
+    credentials: init?.credentials ?? "include",
     headers: {
-      Authorization: `Bearer ${config.token}`,
       "Content-Type": "application/json",
       ...(init?.headers ?? {})
     },

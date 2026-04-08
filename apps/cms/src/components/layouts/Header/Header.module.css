@@ -10,51 +10,6 @@
   gap: 16px;
 }
 
-.brandIdentity {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar {
-  display: block;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  object-fit: cover;
-  box-shadow: 0 8px 20px rgba(29, 35, 64, 0.14);
-}
-
-.handle {
-  margin: 0;
-  margin-top: 0;
-  color: #7b809f;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.loginButton,
-.loginMuted {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 0 14px;
-  border-radius: 999px;
-  font-weight: 700;
-}
-
-.loginButton {
-  background: #111827;
-  color: #ffffff;
-}
-
-.loginMuted {
-  margin: 0;
-  background: #eef2f7;
-  color: #7b809f;
-}
-
 .nav {
   display: grid;
   gap: 18px;
