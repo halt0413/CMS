@@ -1,4 +1,5 @@
 import type { CmsPage } from "@repo/types";
+import { notFound } from "next/navigation";
 
 export type ContentType = string;
 
@@ -54,4 +55,14 @@ export const mockContents: MockContentItem[] = [
 
 export function getMockContentById(id: string): MockContentItem | undefined {
   return mockContents.find((content) => content.id === id);
+}
+
+export function requireMockContent(id: string): MockContentItem {
+  const content = getMockContentById(id);
+
+  if (!content) {
+    notFound();
+  }
+
+  return content;
 }
