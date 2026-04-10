@@ -1,11 +1,11 @@
 import { formatDate } from "@repo/utils";
 import { ContentStatus } from "../../../../../components/content/ContentStatus/ContentStatus";
-import type { MockContentItem } from "../../../../../mocks/content/mockContents";
+import type { ContentItem } from "../../../api";
 import { ContentInfoRow } from "../ContentInfoRow/ContentInfoRow";
 import styles from "./ContentMetaCard.module.css";
 
 type ContentMetaCardProps = {
-  content: MockContentItem;
+  content: ContentItem;
 };
 
 export function ContentMetaCard({ content }: ContentMetaCardProps) {

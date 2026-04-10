@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
-import type { MockContentItem } from "../../../../../mocks/content/mockContents";
+import type { ContentItem } from "../../../api";
 import { ContentBodyCard } from "../ContentBodyCard/ContentBodyCard";
 import { ContentMetaCard } from "../ContentMetaCard/ContentMetaCard";
 import styles from "./ContentDetailPage.module.css";
 
 type ContentDetailPageProps = {
-  content: MockContentItem | null;
+  content: ContentItem | null;
 };
 
 export function ContentDetailPage({ content }: ContentDetailPageProps) {
