@@ -1,8 +1,8 @@
-import type { MockContentItem } from "../../../../../mocks/content/mockContents";
+import type { ContentItem } from "../../../api";
 import styles from "./ContentBodyCard.module.css";
 
 type ContentBodyCardProps = {
-  content: MockContentItem;
+  content: ContentItem;
 };
 
 export function ContentBodyCard({ content }: ContentBodyCardProps) {

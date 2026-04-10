@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { PageHeader } from "../../../../../components/content/PageHeader/PageHeader";
-import type { MockContentItem } from "../../../../../mocks/content/mockContents";
+import type { ContentItem } from "../../../api";
 import { ContentCard } from "../ContentCard/ContentCard";
 import { ContentTypeFilter } from "../ContentTypeFilter/ContentTypeFilter";
 import styles from "./ContentsPage.module.css";
 
 type ContentsPageProps = {
-  contents: MockContentItem[];
+  contents: ContentItem[];
 };
 
 export function ContentsPage({ contents }: ContentsPageProps) {

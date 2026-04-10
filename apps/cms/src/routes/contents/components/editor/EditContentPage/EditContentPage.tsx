@@ -1,10 +1,10 @@
-import type { MockContentItem } from "../../../../../mocks/content/mockContents";
+import type { ContentItem } from "../../../api";
 import { ContentEditorPage } from "../ContentEditorPage/ContentEditorPage";
 import { ContentForm } from "../ContentForm/ContentForm";
 import styles from "./EditContentPage.module.css";
 
 type EditContentPageProps = {
-  content: MockContentItem | null;
+  content: ContentItem | null;
 };
 
 export function EditContentPage({ content }: EditContentPageProps) {

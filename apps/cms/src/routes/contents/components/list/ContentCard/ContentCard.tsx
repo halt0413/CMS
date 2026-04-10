@@ -1,11 +1,11 @@
 import { formatDate } from "@repo/utils";
 import { Link } from "@tanstack/react-router";
 import { ContentStatus } from "../../../../../components/content/ContentStatus/ContentStatus";
-import type { MockContentItem } from "../../../../../mocks/content/mockContents";
+import type { ContentItem } from "../../../api";
 import styles from "./ContentCard.module.css";
 
 type ContentCardProps = {
-  content: MockContentItem;
+  content: ContentItem;
 };
 
 export function ContentCard({ content }: ContentCardProps) {
