@@ -11,7 +11,7 @@ type CreatePageDependencies = {
 export function createPage(
   input: CmsPageInput,
   { createId, getNow, pageRepository }: CreatePageDependencies
-): CmsPage {
+): Promise<CmsPage> {
   const page = buildPage(input, {
     id: createId(),
     now: getNow()

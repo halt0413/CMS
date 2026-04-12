@@ -22,8 +22,8 @@ export function createContentsController({
   updateContent
 }: ContentsControllerHandlers) {
   return {
-    list(c: Context) {
-      const items = listContents();
+    async list(c: Context) {
+      const items = await listContents();
       const response: CmsPageListResponse = {
         items,
         total: items.length
@@ -31,8 +31,8 @@ export function createContentsController({
 
       return c.json(response);
     },
-    get(c: Context) {
-      const item = getContent(requireRouteParam(c, "id"));
+    async get(c: Context) {
+      const item = await getContent(requireRouteParam(c, "id"));
       const response: CmsPageItemResponse = {
         item
       };
@@ -41,7 +41,7 @@ export function createContentsController({
     },
     async create(c: Context) {
       const payload = await c.req.json();
-      const created = createContent(cmsPageSchema.parse(payload));
+      const created = await createContent(cmsPageSchema.parse(payload));
       const response: CmsPageCreateResponse = {
         created
       };
@@ -50,7 +50,7 @@ export function createContentsController({
     },
     async update(c: Context) {
       const payload = await c.req.json();
-      const updated = updateContent(
+      const updated = await updateContent(
         requireRouteParam(c, "id"),
         cmsPagePatchSchema.parse(payload)
       );
@@ -60,15 +60,15 @@ export function createContentsController({
 
       return c.json(response);
     },
-    remove(c: Context) {
-      const response: CmsPageDeleteResponse = deleteContent(
+    async remove(c: Context) {
+      const response: CmsPageDeleteResponse = await deleteContent(
         requireRouteParam(c, "id")
       );
 
       return c.json(response);
     },
-    preview(c: Context) {
-      const page = getContentPreviewById(requireRouteParam(c, "id"));
+    async preview(c: Context) {
+      const page = await getContentPreviewById(requireRouteParam(c, "id"));
       const response: CmsPreviewResponse = {
         slug: page.slug,
         status: "preview",

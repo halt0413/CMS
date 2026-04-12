@@ -18,27 +18,27 @@ export class InMemoryPageRepository implements PageRepository {
     }
   }
 
-  findById(id: CmsPageId): CmsPage | undefined {
+  async findById(id: CmsPageId): Promise<CmsPage | undefined> {
     return this.pages.get(id);
   }
 
-  delete(id: CmsPageId): void {
+  async delete(id: CmsPageId): Promise<void> {
     this.pages.delete(id);
   }
 
-  findBySlug(slug: string): CmsPage | undefined {
+  async findBySlug(slug: string): Promise<CmsPage | undefined> {
     const normalizedSlug = normalizeSlug(slug);
 
-    return this.list().find((page) => page.slug === normalizedSlug);
+    return (await this.list()).find((page) => page.slug === normalizedSlug);
   }
 
-  list(): CmsPage[] {
+  async list(): Promise<CmsPage[]> {
     return Array.from(this.pages.values()).sort((a, b) =>
       b.updatedAt.localeCompare(a.updatedAt)
     );
   }
 
-  save(page: CmsPage): CmsPage {
+  async save(page: CmsPage): Promise<CmsPage> {
     this.pages.set(page.id, page);
     return page;
   }

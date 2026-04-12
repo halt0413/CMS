@@ -4,11 +4,11 @@ import type { PageRepository } from "../ports";
 
 export type PagePreview = CmsPage;
 
-export function getPagePreview(
+export async function getPagePreview(
   pageRepository: PageRepository,
   slug: string
-): PagePreview {
-  const page = pageRepository.findBySlug(slug);
+): Promise<PagePreview> {
+  const page = await pageRepository.findBySlug(slug);
 
   if (!page) {
     throw new NotFoundError("Page not found");

@@ -6,6 +6,7 @@ import { InMemorySessionRepository } from "../infrastructure/auth/InMemorySessio
 import { GitHubOAuthApi } from "../infrastructure/github/GitHubOAuthApi";
 import { OctokitGitHubIssueGateway } from "../infrastructure/github/OctokitGitHubIssueGateway";
 import { InMemoryPageRepository } from "../infrastructure/page/InMemoryPageRepository";
+import type { PageRepository } from "../services/ports";
 import { completeGitHubLogin } from "../services/auth/completeGitHubLogin";
 import { getCurrentUser } from "../services/auth/getCurrentUser";
 import { logout } from "../services/auth/logout";
@@ -26,14 +27,14 @@ import { updatePage } from "../services/page/updatePage";
 type RuntimeDependencies = {
   createId: () => string;
   getNow: () => string;
+  pageRepository?: PageRepository;
 };
 
 export function createApiDependencies(
   env: ApiEnv,
-  { createId, getNow }: RuntimeDependencies
+  { createId, getNow, pageRepository = new InMemoryPageRepository() }: RuntimeDependencies
 ): CreateAppDependencies {
   // Infrastructureの実装をここで束ねて、HTTP層へはusecaseだけを渡す
-  const pageRepository = new InMemoryPageRepository();
   const sessionRepository = new InMemorySessionRepository();
   const oAuthStateRepository = new InMemoryOAuthStateRepository();
   const gitHubIssueGateway = new OctokitGitHubIssueGateway(env.github);

@@ -27,7 +27,9 @@ export type ApiEnv = {
   };
 };
 
-export function getApiEnv(env: NodeJS.ProcessEnv = process.env): ApiEnv {
+export type ApiEnvSource = Record<string, string | undefined>;
+
+export function getApiEnv(env: ApiEnvSource = process.env): ApiEnv {
   const port = requirePositiveIntegerEnv(env, "PORT");
   const apiUrl = requireEnv(env, "API_URL");
   const cmsUrl = requireEnv(env, "CMS_URL");
@@ -67,7 +69,7 @@ export function getApiEnv(env: NodeJS.ProcessEnv = process.env): ApiEnv {
   };
 }
 
-function requireEnv(env: NodeJS.ProcessEnv, name: string): string {
+function requireEnv(env: ApiEnvSource, name: string): string {
   const value = env[name];
 
   if (!value) {
@@ -78,7 +80,7 @@ function requireEnv(env: NodeJS.ProcessEnv, name: string): string {
 }
 
 function requirePositiveIntegerEnv(
-  env: NodeJS.ProcessEnv,
+  env: ApiEnvSource,
   name: string
 ): number {
   const value = Number.parseInt(requireEnv(env, name), 10);

@@ -8,12 +8,12 @@ type UpdatePageDependencies = {
   pageRepository: PageRepository;
 };
 
-export function updatePage(
+export async function updatePage(
   id: CmsPageId,
   patch: CmsPagePatch,
   { getNow, pageRepository }: UpdatePageDependencies
-): CmsPage {
-  const current = pageRepository.findById(id);
+): Promise<CmsPage> {
+  const current = await pageRepository.findById(id);
 
   if (!current) {
     throw new NotFoundError("Page not found");

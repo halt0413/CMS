@@ -1,0 +1,14 @@
+{
+  "name": "cms-api",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-04-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "CONTENT_DB",
+      "database_name": "cms-content",
+      "database_id": "e69e6f46-230a-44fe-a06e-069c2589528c",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
