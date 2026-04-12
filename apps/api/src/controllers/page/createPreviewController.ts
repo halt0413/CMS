@@ -8,14 +8,14 @@ export function createPreviewController({
   getPagePreviewBySlug
 }: PreviewControllerHandlers) {
   return {
-    get(c: Context) {
+    async get(c: Context) {
       const slug = c.req.param("slug");
 
       if (!slug) {
         throw new BadRequestError("slug is required");
       }
 
-      const page = getPagePreviewBySlug(slug);
+      const page = await getPagePreviewBySlug(slug);
       const response: CmsPreviewResponse = {
         slug: page.slug,
         status: "preview",

@@ -15,7 +15,7 @@ export async function syncPageToGitHub(
   pageId: string,
   { gitHubIssueGateway, pageRepository }: SyncPageToGitHubDependencies
 ): Promise<SyncPageToGitHubResult> {
-  const page = pageRepository.findById(pageId);
+  const page = await pageRepository.findById(pageId);
 
   if (!page) {
     throw new NotFoundError("Page not found");

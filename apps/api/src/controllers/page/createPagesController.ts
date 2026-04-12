@@ -18,8 +18,8 @@ export function createPagesController({
   syncPageToGitHub
 }: PagesControllerHandlers) {
   return {
-    list(c: Context) {
-      const items = listPages();
+    async list(c: Context) {
+      const items = await listPages();
       const response: CmsPageListResponse = {
         items,
         total: items.length
@@ -27,8 +27,8 @@ export function createPagesController({
 
       return c.json(response);
     },
-    get(c: Context) {
-      const page = getPage(requireRouteParam(c, "id"));
+    async get(c: Context) {
+      const page = await getPage(requireRouteParam(c, "id"));
       const response: CmsPageItemResponse = {
         item: page
       };
@@ -37,15 +37,15 @@ export function createPagesController({
     },
     async create(c: Context) {
       const payload = await c.req.json();
-      const created = createPage(cmsPageSchema.parse(payload));
+      const created = await createPage(cmsPageSchema.parse(payload));
       const response: CmsPageCreateResponse = {
         created
       };
 
       return c.json(response, 201);
     },
-    preview(c: Context) {
-      const page = getPagePreviewById(requireRouteParam(c, "id"));
+    async preview(c: Context) {
+      const page = await getPagePreviewById(requireRouteParam(c, "id"));
       const response: CmsPreviewResponse = {
         slug: page.slug,
         status: "preview",
