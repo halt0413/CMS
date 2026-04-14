@@ -1,3 +1,4 @@
+import type { CmsPageUpdateRequest } from "@repo/types";
 import type { ContentItem } from "../../../api";
 import { ContentEditorPage } from "../ContentEditorPage/ContentEditorPage";
 import { ContentForm } from "../ContentForm/ContentForm";
@@ -5,9 +6,15 @@ import styles from "./EditContentPage.module.css";
 
 type EditContentPageProps = {
   content: ContentItem | null;
+  isSubmitting?: boolean;
+  onSubmit?: (payload: CmsPageUpdateRequest) => void | Promise<void>;
 };
 
-export function EditContentPage({ content }: EditContentPageProps) {
+export function EditContentPage({
+  content,
+  isSubmitting = false,
+  onSubmit
+}: EditContentPageProps) {
   return (
     <ContentEditorPage
       subtitle={content ? `ID: ${content.id}` : "対象コンテンツが見つかりません。"}
@@ -24,7 +31,9 @@ export function EditContentPage({ content }: EditContentPageProps) {
           }}
           description="既存コンテンツを更新するための編集フォームです。"
           endpoint={`/contents/${content.id}`}
+          isSubmitting={isSubmitting}
           method="PATCH"
+          onSubmit={onSubmit}
           showDelete
           showStatus={false}
           submitLabel="更新する"
