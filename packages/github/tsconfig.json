@@ -6,8 +6,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "paths": {
-      "@repo/types": ["packages/types/dist/index.d.ts"],
-      "@repo/utils": ["packages/utils/dist/index.d.ts"]
+      "@repo/types": ["../types/dist/index.d.ts"],
+      "@repo/utils": ["../utils/dist/index.d.ts"]
     }
   },
   "include": ["src"]
