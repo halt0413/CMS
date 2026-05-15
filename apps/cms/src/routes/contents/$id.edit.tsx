@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "@tanstack/react-router";
+import { LoadingMessage } from "../../components/feedback/LoadingMessage/LoadingMessage";
 import { useContentQuery } from "../../features/contents/hooks/useContentQuery";
 import { useUpdateContentMutation } from "../../features/contents/hooks/useUpdateContentMutation";
 import { EditContentPage } from "../../features/contents/ui/editor/components/EditContentPage/EditContentPage";
@@ -10,7 +11,7 @@ export function EditContentRoute() {
   const updateMutation = useUpdateContentMutation(id);
 
   if (isPending) {
-    return <p>読み込み中...</p>;
+    return <LoadingMessage />;
   }
 
   return (
